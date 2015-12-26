@@ -24,6 +24,8 @@
         //    alert('ok');
         //});
 
+        //Test commit
+
         var $sidebarAndWrapper = $("#sidebar,#wrapper");
 
         $("#sdebarToggle").on("click", function ()
