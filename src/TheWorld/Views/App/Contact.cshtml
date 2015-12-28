@@ -10,7 +10,12 @@
 }
 
 <h2>Contact </h2>
-<form method="post" >
+<form method="post">
+
+    @if (ViewBag.Message != null)
+    {
+        <div>@ViewBag.Message</div>
+    }
 
     <div asp-validation-summary="ValidationSummary.ModelOnly"></div>
 
@@ -29,3 +34,4 @@
     <div><input type="submit" value="Send Message" /></div>
 
 </form>
+
