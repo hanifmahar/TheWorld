@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <title>The World - @ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awsome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -24,8 +25,9 @@
     <div id="wrapper">
         <div id="main">
             <div>
-                <button class="btn btn-primary" id="sdebarToggle">
-                   <i class="glyphicon glyphicon-chevron-left"></i>
+                <button id="sidebarToggle" class="btn btn-primary" >
+                    @*<i class="glyphicon glyphicon-chevron-right"></i>*@
+                   <i class="fa fa-angle-left"></i>
                 </button>
             </div>
             <div>
@@ -37,10 +39,11 @@
         </div>
     </div>
 
+    
     <script type="text/javascript" src="~/lib/jQuery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
-
+    
     @RenderSection("Scripts",false )
 
 </body>
