@@ -5,7 +5,8 @@
     "underscore": "~1.8.3",
     "jQuery": "~2.1.4",
     "jquery-validation": "~1.14.0",
-    "jquery-validation-unobtrusive": "~3.2.5"
-  
+    "jquery-validation-unobtrusive": "~3.2.5",
+    "bootstrap": "~3.3.6"
+
   }
 }
