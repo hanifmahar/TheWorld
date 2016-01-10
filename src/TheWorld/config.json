@@ -1,5 +1,11 @@
 {
   "AppSettings": {
     "SiteEmailAddress": "hanif@hotmail.com"
+  },
+
+  "Data": {
+    "WorldContextconnection": "Server=HANIF\\MSSQLSERVER2014;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }
+
+
