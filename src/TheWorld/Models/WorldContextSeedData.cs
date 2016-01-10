@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Theworld.Models
+namespace TheWorld.Models
 {
     public class WorldContextSeedData
     {

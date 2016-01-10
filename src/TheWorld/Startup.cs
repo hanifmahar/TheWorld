@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TheWorld.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
-using Theworld.Models;
+using TheWorld.Models;
 
 namespace TheWorld
 {
@@ -38,10 +38,11 @@ namespace TheWorld
                 .AddDbContext<WorldContext>();
 
             services.AddTransient<WorldContextSeedData>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
 
-            #if DEBUG
+#if DEBUG
 
-                 services.AddScoped<IMailService, DebugMailService >();
+            services.AddScoped<IMailService, DebugMailService >();
 
 #else
             services.AddScoped<IMailService, DebugMailService >();

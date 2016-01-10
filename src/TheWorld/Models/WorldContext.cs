@@ -2,7 +2,7 @@ using System;
 using Microsoft.Data.Entity;
 using TheWorld;
 
-namespace Theworld.Models
+namespace TheWorld.Models
 {
     public class WorldContext: DbContext
     {
