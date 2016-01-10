@@ -10,6 +10,7 @@ using TheWorld.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using TheWorld.Models;
+using Microsoft.Extensions.Logging;
 
 namespace TheWorld
 {
@@ -39,6 +40,7 @@ namespace TheWorld
 
             services.AddTransient<WorldContextSeedData>();
             services.AddScoped<IWorldRepository, WorldRepository>();
+            services.AddLogging();
 
 #if DEBUG
 
@@ -51,10 +53,12 @@ namespace TheWorld
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory loggerFactory)
         {
             //app.UseDefaultFiles(); // Will look for default files e.g index.html.
             app.UseStaticFiles(); // Will look for static files 
+
+            loggerFactory.AddDebug(LogLevel.Warning);
 
             app.UseMvc
             (
