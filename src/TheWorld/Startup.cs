@@ -12,6 +12,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using TheWorld.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using TheWorld.Controllers.Api;
 
 namespace TheWorld
 {
@@ -62,6 +63,11 @@ namespace TheWorld
         {
             //app.UseDefaultFiles(); // Will look for default files e.g index.html.
             app.UseStaticFiles(); // Will look for static files 
+
+            AutoMapper.Mapper.Initialize(config=>
+            {
+                config.CreateMap<Trip, TripViewModel>().ReverseMap();
+            });
 
             loggerFactory.AddDebug(LogLevel.Warning);
 
