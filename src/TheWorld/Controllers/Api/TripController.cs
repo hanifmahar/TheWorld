@@ -6,17 +6,20 @@ using System.Net;
 using System.Threading.Tasks;
 using TheWorld.Models;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace TheWorld.Controllers.Api
 {
     [Route("api/trips")]
     public class TripController : Controller
     {
+        private ILogger<TripController> _logger;
         private IWorldRepository _repository;
 
-        public TripController(IWorldRepository repository)
+        public TripController(IWorldRepository repository, ILogger<TripController> logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
 
@@ -38,12 +41,16 @@ namespace TheWorld.Controllers.Api
                 {
                     var newTrip = AutoMapper.Mapper.Map<Trip>(vm);
 
+                    _logger.LogInformation("Attempting to save new trip.");
+
                     Response.StatusCode =(int) HttpStatusCode.Created;
                     return Json(AutoMapper.Mapper.Map<TripViewModel>(newTrip ));
                 }
             }
             catch(Exception ex)
             {
+                _logger.LogError("Failed to save new trip.", ex);
+
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { Message =ex.Message  });
             }
