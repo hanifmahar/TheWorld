@@ -36,15 +36,22 @@ namespace TheWorld.Controllers.Api
         {
 
             try
-            { 
+            {
                 if (ModelState.IsValid)
                 {
                     var newTrip = AutoMapper.Mapper.Map<Trip>(vm);
 
                     _logger.LogInformation("Attempting to save new trip.");
 
+                    _repository.AddTrip(newTrip);
+
+                    if (_repository.SaveAll())
+                    { 
+
                     Response.StatusCode =(int) HttpStatusCode.Created;
                     return Json(AutoMapper.Mapper.Map<TripViewModel>(newTrip ));
+
+                    }
                 }
             }
             catch(Exception ex)
