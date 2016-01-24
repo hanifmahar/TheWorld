@@ -49,7 +49,7 @@ namespace TheWorld.Controllers.Api
             }
         }
 
-        public JsonResult Post(string tripName, [FromBody]StopViewModel vm)
+        public async Task<JsonResult> Post(string tripName, [FromBody]StopViewModel vm)
         {
             try
             {
@@ -61,13 +61,16 @@ namespace TheWorld.Controllers.Api
 
                     //Looking up Geocoordinates
 
-                    var coordResult = _coordService.Lookup(newStop.Name );
+                    var coordResult = await  _coordService.Lookup(newStop.Name );
 
                     if (!coordResult.Success)
                     {
                         Response.StatusCode = (int)HttpStatusCode.BadRequest;
                         return Json(coordResult.Message );
                     }
+
+                    newStop.Latitude = coordResult.Latitude;
+                    newStop.Longitude = coordResult.Longitude;
 
                     //Save to the Databse
                     _repository.AddStop(tripName, newStop);
