@@ -1,6 +1,7 @@
 {
   "AppSettings": {
-    "SiteEmailAddress": "hanif@hotmail.com"
+    "SiteEmailAddress": "hanif@hotmail.com",
+    "BingKey": "AtTKbqrNLceZMV8xkw00zWf8_B23HhE34MITd1mV5GpIO8ncoD1tkuHrOu5wTbgL"
   },
 
   "Data": {
