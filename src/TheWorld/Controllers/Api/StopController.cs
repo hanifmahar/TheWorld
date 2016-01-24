@@ -14,7 +14,6 @@ namespace TheWorld.Controllers.Api
    [Route("api/trips/{tripName}/stops")]
     public class StopController:Controller
     {
-        private object httpStusCode;
         private ILogger<StopController> _logger;
         private IWorldRepository _repository;
 
@@ -44,6 +43,43 @@ namespace TheWorld.Controllers.Api
                 _logger.LogError($"Failed to get stops for trip {tripName}", ex );
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json($"Error occurred fiding {tripName}");
+            }
+        }
+
+        public JsonResult Post(string tripName, [FromBody]StopViewModel vm)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //Map the entity
+
+                    var newStop = Mapper.Map<Stop>(vm);
+
+                    //Looking up Geocoordinates
+
+                    //Save to the Databse
+                    _repository.AddStop(tripName, newStop);
+
+                    if (_repository.SaveAll())
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.Created;
+
+                        return Json(Mapper.Map<StopViewModel>(newStop));
+                    }
+                }
+
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { Message = "Failed: Invalid Data", ModelState = ModelState });
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                _logger.LogError("failed to add new stop", ex);
+
+                return Json("failed to add new stop");
             }
         }
     }

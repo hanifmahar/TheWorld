@@ -17,6 +17,24 @@ namespace TheWorld.Models
             _logger = logger;
         }
 
+        public void AddStop(string tripName, Stop newStop)
+        {
+            try
+            {
+                var theTrip = GetTripByName(tripName);
+
+                newStop.Order = theTrip.Stops.Max(s => s.Order) + 1;
+
+                _context.Stops.Add(newStop);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to add new stop.", ex);
+                
+            }
+                       
+        }
+
         public void AddTrip(Trip newTrip)
         {
             _context.Trips.Add(newTrip);
