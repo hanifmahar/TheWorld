@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TheWorld.Models;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using TheWorld.ViewModels;
 
 namespace TheWorld.Controllers.Api
 {
