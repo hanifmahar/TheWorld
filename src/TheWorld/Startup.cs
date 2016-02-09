@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using TheWorld.Controllers.Api;
 using TheWorld.ViewModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TheWorld
 {
@@ -41,6 +42,13 @@ namespace TheWorld
                     opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
 
+            services.AddIdentity<WorldUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            }).AddEntityFrameworkStores<WorldContext>();
+
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<WorldContext>();
@@ -65,6 +73,8 @@ namespace TheWorld
         {
             //app.UseDefaultFiles(); // Will look for default files e.g index.html.
             app.UseStaticFiles(); // Will look for static files 
+
+            app.UseIdentity();
 
             AutoMapper.Mapper.Initialize(config=>
             {
