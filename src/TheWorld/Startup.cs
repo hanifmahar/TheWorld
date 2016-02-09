@@ -61,7 +61,7 @@ namespace TheWorld
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory loggerFactory)
+        public async void  Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory loggerFactory)
         {
             //app.UseDefaultFiles(); // Will look for default files e.g index.html.
             app.UseStaticFiles(); // Will look for static files 
@@ -86,7 +86,7 @@ namespace TheWorld
                 }
             );
 
-            seeder.EnsureSeedData();
+          await seeder.EnsureSeedDataAsync();
 
             //app.UseIISPlatformHandler();
 
