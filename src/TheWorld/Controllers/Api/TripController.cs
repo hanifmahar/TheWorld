@@ -8,9 +8,11 @@ using TheWorld.Models;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using TheWorld.ViewModels;
+using Microsoft.AspNet.Authorization;
 
 namespace TheWorld.Controllers.Api
 {
+    [Authorize]
     [Route("api/trips")]
     public class TripController : Controller
     {
