@@ -17,11 +17,11 @@ namespace TheWorld.Models
             _logger = logger;
         }
 
-        public void AddStop(string tripName, Stop newStop)
+        public void AddStop(string tripName, string userName,Stop newStop)
         {
             try
             {
-                var theTrip = GetTripByName(tripName);
+                var theTrip = GetTripByName(tripName, userName);
 
                 newStop.Order = theTrip.Stops.Max(s => s.Order) + 1;
 
@@ -88,12 +88,12 @@ namespace TheWorld.Models
             }
         }
 
-        public Trip GetTripByName(string tripName)
+        public Trip GetTripByName(string tripName,string  userName)
         {
             try
             {
                 return _context.Trips.Include(t => t.Stops)
-                               .Where(t => t.Name == tripName)
+                               .Where(t => t.Name == tripName && t.UserName==userName )
                                .FirstOrDefault();
             }
             catch (Exception ex)
