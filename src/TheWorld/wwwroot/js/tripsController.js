@@ -26,12 +26,36 @@
         }, function (error) {
             vm.errorMessage = "Fail to load data. " + error;
         }).finally(function () {
+
+            //Failure
             vm.isBusy = false;
+
         });
 
         vm.addTrip = function () {
-            vm.trips.push({ name: vm.newTrip.name, created: new Date() });
-            vm.newTrip = {};
+           
+            vm.isBusy = true;
+            vm.errorMessage = "";
+
+            $http.post("/api/trips", vm.newTrip)
+            .then(function (response) {
+
+                //Success
+                vm.trips.push(response.data);
+                vm.newTrip = {};
+
+            }, function (){
+
+                //Failure
+                vm.errorMessage ="Fail to save new trip."
+
+            }).finally(function () {
+
+                vm.isBusy = false;
+
+            });
+
+
         }
     }
 
