@@ -28,7 +28,7 @@
         }).finally(function () {
 
             //Failure
-            vm.isBusy = false;
+           // vm.isBusy = false;
 
         });
 
