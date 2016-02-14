@@ -13,7 +13,8 @@
         <table class="table table-responsive table-striped">
             <tr ng-repeat="trip in vm.trips">
                 <td>{{trip.name}}</td>
-                <td>{{trip.created}}</td>
+                <td>{{trip.created | date:'shortDate'}}</td>
+                <td><a href="#" class="btn btn-sm btn-primary" >Manage</a></td>
             </tr>
         </table>
     </div>

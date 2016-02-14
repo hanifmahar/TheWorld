@@ -11,8 +11,8 @@
     function tripsController()
     {
         var vm = this;
-        vm.trips = [{ name: "Us Trip", create: new Date() },
-                    { name: "World Trip", create: new Date() }
+        vm.trips = [{ name: "Us Trip", created: new Date() },
+                    { name: "World Trip", created: new Date() }
                    ];
     }
 
