@@ -13,11 +13,9 @@
         <table class="table table-responsive table-striped">
             <tr ng-repeat="trip in vm.trips">
                 <td>{{trip.name}}</td>
-                <td>
-                    {{trip.cr#" class="btn btn-sm btn-primary" >Manage</a></td>
-            </tr>eated | date:'shortDate'}}
-                </td>
-                <td><a href="
+                <td>{{trip.created | date:'shortDate'}}</td>
+                <td><a href="#" class="btn btn-sm btn-primary" >Manage</a></td>
+            </tr>
         </table>
         <form novalidate name="newTripForm" ng-submit="vm.addTrip()">
             <div class="form-group">
